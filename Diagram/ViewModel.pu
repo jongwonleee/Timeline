@@ -1,0 +1,35 @@
+@startuml story_class
+interface TimelineLogProtocol {
+    Date date
+    Stirng memo
+}
+
+class TimelineMemoLogViewModel {
+    String title?
+}
+
+class TimelineImageLogViewModel {
+    String title
+    UIImage image
+}
+
+class TimelineDateInfoViewModel {
+    Date date
+    PrintFormat format
+}
+
+class TimelinePageViewModel {
+    [TimelineLogProtocol] logs
+    TimelineDateInfoViewModel nextPage?
+}
+
+class TimelineViewModel {
+    [TimelinePageViewModel] pages
+}
+
+TimelineImageLogViewModel ..|> TimelineLogProtocol
+TimelineMemoLogViewModel ..|> TimelineLogProtocol
+TimelineLogProtocol --> TimelinePageViewModel
+TimelineDateInfoViewModel --> TimelinePageViewModel
+TimelinePageViewModel --> TimelineViewModel
+@enduml
