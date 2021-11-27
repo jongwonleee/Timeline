@@ -26,5 +26,8 @@ class TimelineViewModel {
             pageModels.append(model)
             heightSum = heightSum + model.type.cellHeight
         }
+
+        pages.append(TimelinePageViewModel(models: pageModels, nextModel: nil))
+        print(pages)
     }
 }
