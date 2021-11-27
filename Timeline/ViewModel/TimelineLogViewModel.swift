@@ -6,3 +6,48 @@
 //
 
 import Foundation
+import UIKit
+
+class TimelineLogViewModel {
+    let date: Date
+    let memo: String
+
+    init(model: TimelineLogModel) {
+        date = model.date
+        memo = model.memo
+    }
+}
+
+class TimelineMemoLogViewModel: TimelineLogViewModel {
+    var title: String?
+
+    override init(model: TimelineLogModel) {
+        title = model.title
+        super.init(model: model)
+
+        guard model.type == .memo else {
+            assertionFailure("wrong model type")
+            return
+        }
+    }
+}
+
+class TimelineImageLogViewModel: TimelineLogViewModel {
+    var image: UIImage?
+    var title: String = ""
+
+    override init(model: TimelineLogModel) {
+        super.init(model: model)
+
+        guard model.type == .image,
+              let modelImage = model.image,
+              let modelTitle = model.title
+        else {
+            assertionFailure("wrong model type")
+            return
+        }
+
+        image = modelImage
+        title = modelTitle
+    }
+}
