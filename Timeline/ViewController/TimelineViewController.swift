@@ -53,6 +53,8 @@ class TimelineViewController: UIViewController {
         return view
     }()
 
+    var viewModel: TimelineViewModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -61,7 +63,33 @@ class TimelineViewController: UIViewController {
 
         timelineOverlayView.delegate = self
 
+        viewModel = TimelineViewModel(models: addMockModels, frameHeight: view.safeAreaLayoutGuide.layoutFrame.height)
+
     }
+
+    private var addMockModels: [TimelineLogModel]{
+        var date = Date()
+        var models: [TimelineLogModel] = []
+        for _ in 0..<100 {
+            let interval = -86400 * Int.random(in: 3..<15)
+            date = date.addingTimeInterval(Double(interval))
+            var model = TimelineLogModel()
+
+            model.date = date
+            model.memo = "hihi!!" + interval.formatted()
+            if models.capacity % 3 == 0 {
+                model.type = .memo
+            } else {
+                model.type = .image
+                model.title = "this is title"
+                model.image = UIImage()
+            }
+
+            models.append(model)
+        }
+        return models
+    }
+
 
     private func addSubviews() {
         view.addSubview(lineView)
