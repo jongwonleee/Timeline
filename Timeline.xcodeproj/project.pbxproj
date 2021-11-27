@@ -13,6 +13,13 @@
 		CE4592E727511B2300D260FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4592E627511B2300D260FF /* Assets.xcassets */; };
 		CE4592EA27511B2300D260FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4592E827511B2300D260FF /* LaunchScreen.storyboard */; };
 		CE4592F52751281000D260FF /* TimelineOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4592F42751281000D260FF /* TimelineOverlayView.swift */; };
+		CEDB0D2B275268210063057C /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D2A275268210063057C /* TimelineViewModel.swift */; };
+		CEDB0D2D2752683E0063057C /* TimelinePageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D2C2752683E0063057C /* TimelinePageViewCell.swift */; };
+		CEDB0D2F275268510063057C /* TimelinePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D2E275268510063057C /* TimelinePageViewModel.swift */; };
+		CEDB0D31275268B30063057C /* TimelineLogCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D30275268B30063057C /* TimelineLogCellProtocol.swift */; };
+		CEDB0D33275269380063057C /* TimelineLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D32275269380063057C /* TimelineLogViewModel.swift */; };
+		CEDB0D36275270C60063057C /* TimelineLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D35275270C60063057C /* TimelineLogModel.swift */; };
+		CEDB0D38275274BE0063057C /* TimelineDateInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D37275274BE0063057C /* TimelineDateInfoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		CE4592E927511B2300D260FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE4592EB27511B2300D260FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE4592F42751281000D260FF /* TimelineOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineOverlayView.swift; sourceTree = "<group>"; };
+		CEDB0D2A275268210063057C /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
+		CEDB0D2C2752683E0063057C /* TimelinePageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageViewCell.swift; sourceTree = "<group>"; };
+		CEDB0D2E275268510063057C /* TimelinePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageViewModel.swift; sourceTree = "<group>"; };
+		CEDB0D30275268B30063057C /* TimelineLogCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineLogCellProtocol.swift; sourceTree = "<group>"; };
+		CEDB0D32275269380063057C /* TimelineLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineLogViewModel.swift; sourceTree = "<group>"; };
+		CEDB0D35275270C60063057C /* TimelineLogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineLogModel.swift; sourceTree = "<group>"; };
+		CEDB0D37275274BE0063057C /* TimelineDateInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDateInfoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,7 @@
 		CE4592D927511B2200D260FF /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				CEDB0D34275270A80063057C /* Model */,
 				CE4592F3275127FC00D260FF /* View */,
 				CE4592F2275127F200D260FF /* ViewModel */,
 				CE4592F1275127EA00D260FF /* ViewController */,
@@ -79,6 +94,10 @@
 		CE4592F2275127F200D260FF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CEDB0D2A275268210063057C /* TimelineViewModel.swift */,
+				CEDB0D2E275268510063057C /* TimelinePageViewModel.swift */,
+				CEDB0D32275269380063057C /* TimelineLogViewModel.swift */,
+				CEDB0D37275274BE0063057C /* TimelineDateInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -87,8 +106,18 @@
 			isa = PBXGroup;
 			children = (
 				CE4592F42751281000D260FF /* TimelineOverlayView.swift */,
+				CEDB0D2C2752683E0063057C /* TimelinePageViewCell.swift */,
+				CEDB0D30275268B30063057C /* TimelineLogCellProtocol.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CEDB0D34275270A80063057C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEDB0D35275270C60063057C /* TimelineLogModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,10 +190,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDB0D2D2752683E0063057C /* TimelinePageViewCell.swift in Sources */,
+				CEDB0D36275270C60063057C /* TimelineLogModel.swift in Sources */,
+				CEDB0D38275274BE0063057C /* TimelineDateInfoViewModel.swift in Sources */,
+				CEDB0D2F275268510063057C /* TimelinePageViewModel.swift in Sources */,
 				CE4592F52751281000D260FF /* TimelineOverlayView.swift in Sources */,
+				CEDB0D31275268B30063057C /* TimelineLogCellProtocol.swift in Sources */,
 				CE4592E527511B2200D260FF /* Timeline.xcdatamodeld in Sources */,
 				CE4592DF27511B2200D260FF /* TimelineViewController.swift in Sources */,
 				CE4592DB27511B2200D260FF /* AppDelegate.swift in Sources */,
+				CEDB0D2B275268210063057C /* TimelineViewModel.swift in Sources */,
+				CEDB0D33275269380063057C /* TimelineLogViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
