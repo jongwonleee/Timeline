@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
+class TimelinePageViewCell: UICollectionViewCell {
+    static var reuseIdentifier = "TimelinePageViewCell"
+}

@@ -9,7 +9,14 @@ import Foundation
 import UIKit
 
 protocol TimelineLogCellProtocol {
-    var identifier: String { get }
+    static var reuseIdentifier: String { get }
+}
+
+extension TimelineLogCellProtocol {
+    public static var reuseIdentifier: String {
+        let thisType = type(of: self)
+        return String(describing: thisType)
+    }
 }
 
 class TimelineMemoLogViewCell: UICollectionViewCell, TimelineLogCellProtocol {
@@ -17,7 +24,7 @@ class TimelineMemoLogViewCell: UICollectionViewCell, TimelineLogCellProtocol {
         static let height = CGFloat(70)
     }
 
-    var identifier = "TimelineMemoLogViewCell"
+    static var reuseIdentifier = "TimelineMemoLogViewCell"
 }
 
 class TimelineImageLogViewCell: UICollectionViewCell, TimelineLogCellProtocol {
@@ -25,7 +32,7 @@ class TimelineImageLogViewCell: UICollectionViewCell, TimelineLogCellProtocol {
         static let height = CGFloat(100)
     }
 
-    var identifier = "TimelineImageLogViewCell"
+    static var reuseIdentifier = "TimelineImageLogViewCell"
 }
 
 class TimelineDateInfoViewCell: UICollectionViewCell {
@@ -33,5 +40,5 @@ class TimelineDateInfoViewCell: UICollectionViewCell {
         static let height = CGFloat(50)
     }
 
-    var identifier = "TimelineDateInfoViewCell"
+    static var reuseIdentifier = "TimelineDateInfoViewCell"
 }

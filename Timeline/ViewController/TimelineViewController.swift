@@ -36,11 +36,11 @@ class TimelineViewController: UIViewController {
         collectionView.alwaysBounceHorizontal = true
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView.backgroundColor = UIColor.clear
-//
-//        collectionView.register(
-//            StoryViewerViewCell.self,
-//            forCellWithReuseIdentifier: StoryViewerViewCell.reuseIdentifier
-//        )
+
+        collectionView.register(
+            TimelinePageViewCell.self,
+            forCellWithReuseIdentifier: TimelinePageViewCell.reuseIdentifier
+        )
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
