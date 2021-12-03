@@ -21,21 +21,17 @@ class TimelineViewController: UIViewController {
 
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.sectionHeadersPinToVisibleBounds = true
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
-        flowLayout.scrollDirection = .horizontal
+        flowLayout.scrollDirection = .vertical
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.collectionViewLayout = flowLayout
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.scrollsToTop = true
         collectionView.isPagingEnabled = true
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.alwaysBounceHorizontal = true
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView.backgroundColor = UIColor.clear
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        collectionView.contentInsetAdjustmentBehavior = .never
 
         collectionView.register(
             TimelinePageViewCell.self,
@@ -43,7 +39,6 @@ class TimelineViewController: UIViewController {
         )
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-
         return collectionView
     }()
 
@@ -62,9 +57,12 @@ class TimelineViewController: UIViewController {
         configureConstraints()
 
         timelineOverlayView.delegate = self
+        viewModel = TimelineViewModel(models: addMockModels, frameHeight: view.frame.height)
 
-        viewModel = TimelineViewModel(models: addMockModels, frameHeight: view.safeAreaLayoutGuide.layoutFrame.height)
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     private var addMockModels: [TimelineLogModel]{
@@ -93,7 +91,8 @@ class TimelineViewController: UIViewController {
 
     private func addSubviews() {
         view.addSubview(lineView)
-        view.addSubview(timelineOverlayView)
+        view.addSubview(collectionView)
+//        view.addSubview(timelineOverlayView)
     }
 
     private func configureConstraints() {
@@ -102,11 +101,16 @@ class TimelineViewController: UIViewController {
             lineView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             lineView.topAnchor.constraint(equalTo: view.topAnchor),
             lineView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//
+//            timelineOverlayView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            timelineOverlayView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            timelineOverlayView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+//            timelineOverlayView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 
-            timelineOverlayView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            timelineOverlayView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            timelineOverlayView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            timelineOverlayView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
 
@@ -114,82 +118,54 @@ class TimelineViewController: UIViewController {
 
 extension TimelineViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        0
+        viewModel?.pages.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell
     {
-        UICollectionViewCell()
+        guard let pageViewModel = viewModel?.pages[safe: indexPath.row],
+              let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TimelinePageViewCell.reuseIdentifier,
+                for: indexPath
+              ) as? TimelinePageViewCell else {  return UICollectionViewCell() }
+
+        cell.configure(viewModel: pageViewModel)
+
+        return cell
     }
 
-    func collectionView(
-        _ collectionView: UICollectionView,
-        willDisplay cell: UICollectionViewCell,
-        forItemAt indexPath: IndexPath
-    ) {
-
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        didEndDisplaying cell: UICollectionViewCell,
-        forItemAt indexPath: IndexPath
-    ) {
-
-    }
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-
-    }
-
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-
-    }
-
-    func scrollViewWillEndDragging(
-        _ scrollView: UIScrollView, withVelocity velocity: CGPoint,
-        targetContentOffset: UnsafeMutablePointer<CGPoint>
-    ) {
-
-    }
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//
+//    }
+//
+//    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+//
+//    }
+//
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//
+//    }
+//
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//
+//    }
+//
+//    func scrollViewWillEndDragging(
+//        _ scrollView: UIScrollView, withVelocity velocity: CGPoint,
+//        targetContentOffset: UnsafeMutablePointer<CGPoint>
+//    ) {
+//
+//    }
 }
 
 extension TimelineViewController: UICollectionViewDelegateFlowLayout {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-    }
-
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        view.frame.size
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        0
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAt section: Int
-    ) -> UIEdgeInsets {
-        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        collectionView.frame.size
     }
 }
 extension TimelineViewController: TimelineOverlayViewDelegate {
