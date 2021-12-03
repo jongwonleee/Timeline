@@ -13,6 +13,8 @@
 		CE4592E727511B2300D260FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4592E627511B2300D260FF /* Assets.xcassets */; };
 		CE4592EA27511B2300D260FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4592E827511B2300D260FF /* LaunchScreen.storyboard */; };
 		CE4592F52751281000D260FF /* TimelineOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4592F42751281000D260FF /* TimelineOverlayView.swift */; };
+		CE4721452757B9E700D02F73 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4721442757B9E700D02F73 /* Array+.swift */; };
+		CEA5CB39275A488E008A9522 /* ReusableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5CB38275A488E008A9522 /* ReusableCollectionViewCell.swift */; };
 		CEDB0D2B275268210063057C /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D2A275268210063057C /* TimelineViewModel.swift */; };
 		CEDB0D2D2752683E0063057C /* TimelinePageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D2C2752683E0063057C /* TimelinePageViewCell.swift */; };
 		CEDB0D2F275268510063057C /* TimelinePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB0D2E275268510063057C /* TimelinePageViewModel.swift */; };
@@ -31,6 +33,8 @@
 		CE4592E927511B2300D260FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE4592EB27511B2300D260FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE4592F42751281000D260FF /* TimelineOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineOverlayView.swift; sourceTree = "<group>"; };
+		CE4721442757B9E700D02F73 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		CEA5CB38275A488E008A9522 /* ReusableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEDB0D2A275268210063057C /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
 		CEDB0D2C2752683E0063057C /* TimelinePageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageViewCell.swift; sourceTree = "<group>"; };
 		CEDB0D2E275268510063057C /* TimelinePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageViewModel.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 		CE4592D927511B2200D260FF /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				CE4721432757B9D900D02F73 /* Extensions */,
 				CEDB0D34275270A80063057C /* Model */,
 				CE4592F3275127FC00D260FF /* View */,
 				CE4592F2275127F200D260FF /* ViewModel */,
@@ -110,6 +115,15 @@
 				CEDB0D30275268B30063057C /* TimelineLogCellProtocol.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CE4721432757B9D900D02F73 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE4721442757B9E700D02F73 /* Array+.swift */,
+				CEA5CB38275A488E008A9522 /* ReusableCollectionViewCell.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CEDB0D34275270A80063057C /* Model */ = {
@@ -191,10 +205,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDB0D2D2752683E0063057C /* TimelinePageViewCell.swift in Sources */,
+				CE4721452757B9E700D02F73 /* Array+.swift in Sources */,
 				CEDB0D36275270C60063057C /* TimelineLogModel.swift in Sources */,
 				CEDB0D38275274BE0063057C /* TimelineDateInfoViewModel.swift in Sources */,
 				CEDB0D2F275268510063057C /* TimelinePageViewModel.swift in Sources */,
 				CE4592F52751281000D260FF /* TimelineOverlayView.swift in Sources */,
+				CEA5CB39275A488E008A9522 /* ReusableCollectionViewCell.swift in Sources */,
 				CEDB0D31275268B30063057C /* TimelineLogCellProtocol.swift in Sources */,
 				CE4592E527511B2200D260FF /* Timeline.xcdatamodeld in Sources */,
 				CE4592DF27511B2200D260FF /* TimelineViewController.swift in Sources */,
