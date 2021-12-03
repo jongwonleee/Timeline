@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 class TimelinePageViewModel {
     var logs: [TimelineLogViewModel] = []
     var nextPageDate: TimelineDateInfoViewModel?
+    let totalLogHeight: CGFloat
+    public init(models: [TimelineLogModel], nextModel: TimelineLogModel?, totalHeight: CGFloat) {
+        totalLogHeight = totalHeight
 
-    public init(models: [TimelineLogModel], nextModel: TimelineLogModel?) {
         models.forEach { model in
             switch model.type {
             case .memo:

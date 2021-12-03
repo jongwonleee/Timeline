@@ -17,9 +17,9 @@ class TimelineViewModel {
         var heightSum: CGFloat = 0
 
         models.sorted(by: { $0.date > $1.date }).forEach { model in
-            if heightSum + model.type.cellHeight > frameHeight - TimelineDateInfoViewCell.Layout.height {
-                pages.append(TimelinePageViewModel(models: pageModels, nextModel: model))
-                pageModels = []
+            if heightSum + model.type.cellHeight >= frameHeight - TimelineDateInfoViewCell.Layout.height {
+                pages.append(TimelinePageViewModel(models: pageModels, nextModel: model, totalHeight: heightSum))
+                pageModels.removeAll()
                 heightSum = 0
             }
 
@@ -27,7 +27,6 @@ class TimelineViewModel {
             heightSum = heightSum + model.type.cellHeight
         }
 
-        pages.append(TimelinePageViewModel(models: pageModels, nextModel: nil))
-        print(pages)
+        pages.append(TimelinePageViewModel(models: pageModels, nextModel: nil, totalHeight: heightSum))
     }
 }
