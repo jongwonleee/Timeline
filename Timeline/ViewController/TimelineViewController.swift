@@ -57,7 +57,8 @@ class TimelineViewController: UIViewController {
         configureConstraints()
 
         timelineOverlayView.delegate = self
-        viewModel = TimelineViewModel(models: addMockModels, frameHeight: view.frame.height)
+        let safeAreaHeight = view.frame.height - view.safeAreaInsets.top - view.safeAreaInsets.bottom
+        viewModel = TimelineViewModel(models: addMockModels, frameHeight: safeAreaHeight)
 
     }
 
@@ -80,7 +81,7 @@ class TimelineViewController: UIViewController {
             } else {
                 model.type = .image
                 model.title = "this is title"
-                model.image = UIImage()
+                model.image = UIImage(systemName: "square.and.arrow.up")
             }
 
             models.append(model)
