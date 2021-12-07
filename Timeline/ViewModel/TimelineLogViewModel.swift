@@ -8,23 +8,29 @@
 import Foundation
 import UIKit
 
+enum LogLocation {
+    case left
+    case right
+}
+
 class TimelineLogViewModel {
     let date: Date
     let memo: String
     let type: TimelineLogType
-
-    init(model: TimelineLogModel) {
+    let location: LogLocation
+    init(model: TimelineLogModel, location: LogLocation) {
         date = model.date
         memo = model.memo
         type = model.type
+        self.location = location
     }
 }
 
 class TimelineMemoLogViewModel: TimelineLogViewModel {
     var title: String?
-    override init(model: TimelineLogModel) {
+    override init(model: TimelineLogModel, location: LogLocation) {
         title = model.title
-        super.init(model: model)
+        super.init(model: model, location: location)
 
         guard model.type == .memo else {
             assertionFailure("wrong model type")
@@ -37,8 +43,8 @@ class TimelineImageLogViewModel: TimelineLogViewModel {
     var image: UIImage?
     var title: String = ""
 
-    override init(model: TimelineLogModel) {
-        super.init(model: model)
+    override init(model: TimelineLogModel, location: LogLocation) {
+        super.init(model: model, location: location)
 
         guard model.type == .image,
               let modelImage = model.image,
