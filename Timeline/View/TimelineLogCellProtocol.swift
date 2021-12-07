@@ -245,4 +245,12 @@ class TimelineDateInfoViewCell: UICollectionViewCell, ReusableCollectionViewCell
         dateLabel.text = viewModel.dateInfo
     }
 }
+
+class TimelineAddInfoViewCell: UICollectionViewCell, ReusableCollectionViewCell {
+
+    static var reuseIdentifier = "TimelineAddInfoViewCell"
+
+    func configure() {
+        backgroundColor = .gray
+    }
 }
