@@ -211,10 +211,38 @@ class TimelineImageLogViewCell: TimelineDefaultLogViewCell, TimelineLogCellProto
     }
 }
 
-class TimelineDateInfoViewCell: UICollectionViewCell {
+class TimelineDateInfoViewCell: UICollectionViewCell, ReusableCollectionViewCell {
     struct Layout {
         static let height = CGFloat(50)
     }
 
     static var reuseIdentifier = "TimelineDateInfoViewCell"
+
+    private let dateLabel: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .lightGray
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        return label
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentView.addSubview(dateLabel)
+
+        NSLayoutConstraint.activate([
+            dateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            dateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        assertionFailure("wrong initalizer")
+    }
+
+    func configure(viewModel: TimelineDateInfoViewModel) {
+        dateLabel.text = viewModel.dateInfo
+    }
+}
 }
