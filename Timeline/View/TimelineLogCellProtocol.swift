@@ -8,14 +8,39 @@
 import Foundation
 import UIKit
 
-protocol TimelineLogCellProtocol {
-    static var reuseIdentifier: String { get }
+protocol TimelineLogCellProtocol: ReusableCollectionViewCell {
+    func configure(viewModel: TimelineLogViewModel)
 }
 
-extension TimelineLogCellProtocol {
-    public static var reuseIdentifier: String {
-        let thisType = type(of: self)
-        return String(describing: thisType)
+class TimelineDefaultLogViewCell: UICollectionViewCell {
+    private struct Layout {
+        static let dotViewSize: CGFloat = 10
+    }
+    var centerDotView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightGray
+        view.layer.cornerRadius = Layout.dotViewSize / 2
+        view.layer.masksToBounds = true
+        return view
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .clear
+        contentView.addSubview(centerDotView)
+
+        NSLayoutConstraint.activate([
+            centerDotView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            centerDotView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            centerDotView.heightAnchor.constraint(equalToConstant: Layout.dotViewSize),
+            centerDotView.widthAnchor.constraint(equalToConstant: Layout.dotViewSize),
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        assertionFailure("wrong initalizer")
     }
 }
 
