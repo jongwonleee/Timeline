@@ -55,6 +55,8 @@ class TimelinePageViewCell: UICollectionViewCell, ReusableCollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        viewModel = nil
+        collectionView.reloadData()
     }
 
     override func layoutSubviews() {

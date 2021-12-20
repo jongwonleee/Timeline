@@ -39,10 +39,9 @@ enum PrintFormat {
 class TimelineDateInfoViewModel {
     let date: Date
     let dateInfo: String
-    var format: PrintFormat = .day
+    private var format: PrintFormat = .day
     init(previousModel: TimelineLogModel, nextModel: TimelineLogModel) {
         date = nextModel.date
-
         if previousModel.date.weekday > nextModel.date.weekday {
             format = .week
         }
@@ -57,7 +56,7 @@ class TimelineDateInfoViewModel {
             format = .month
         }
 
-        if previousModel.date.year != nextModel.date.month {
+        if previousModel.date.year != nextModel.date.year {
             format = .year
         }
 

@@ -241,6 +241,11 @@ class TimelineDateInfoViewCell: UICollectionViewCell, ReusableCollectionViewCell
         assertionFailure("wrong initalizer")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dateLabel.text = nil
+    }
+
     func configure(viewModel: TimelineDateInfoViewModel) {
         dateLabel.text = viewModel.dateInfo
     }
